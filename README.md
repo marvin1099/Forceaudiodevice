@@ -18,7 +18,9 @@ https://www.nirsoft.net/utils/nircmd-x64.zip
 # Working
 Still working an auto installer you wat to run it ad this to the Task Scheduler   
 - add trigger for on system start  
-- select run with highest privileges   
+- select run with highest privileges 
+- select run wehether user is loged on
+- select do not store password
 - add run a progamm in actions with this:  
   - script: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe  
   - argument: -windowstyle hidden .\Setaudio.ps1   
