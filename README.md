@@ -16,7 +16,8 @@ The main version of this script requires nircmd ***IN THE SAME FOLDER AS THE SCR
 https://www.nirsoft.net/utils/nircmd-x64.zip
 
 # Working
-Still working an auto installer you wat to run it ad this to the Task Scheduler   
+Still working an auto installer   
+You want to run it ad this to the Task Scheduler   
 - add trigger for on system start  
 - select run with highest privileges 
 - select run wehether user is loged on
