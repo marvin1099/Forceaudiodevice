@@ -17,7 +17,7 @@ https://www.nirsoft.net/utils/nircmd-x64.zip
 
 # Working
 Still working an ***AUTO INSTALLER***   
-You want to run it add this to the Task Scheduler:   
+You want to run it, add this to the Task Scheduler:   
 - add trigger for on system start  
 - select run with highest privileges 
 - select run wehether user is loged on
