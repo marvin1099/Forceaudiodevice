@@ -10,6 +10,6 @@ When it ask you for a ***NAME*** for the playback or recording communicatinos de
 Required is AudioDeviceCmdlets which is a audio managing libary for Powershell  
 https://github.com/frgnca/AudioDeviceCmdlets
 
-The main version of this script requires nircmd ***in the same folder as the script*** to change the communicatinos device  
+The main version of this script requires nircmd ***IN THE SAME FOLDER AS THE SCRIPT*** to change the communicatinos device  
 https://www.nirsoft.net/utils/nircmd-x64.zip
 
