@@ -15,3 +15,11 @@ https://github.com/frgnca/AudioDeviceCmdlets
 The main version of this script requires nircmd ***IN THE SAME FOLDER AS THE SCRIPT OR AS A SYSTEM VARIABLE*** to change the communicatinos device  
 https://www.nirsoft.net/utils/nircmd-x64.zip
 
+# Working
+Still working an auto installer you wat to run it ad this to the Task Scheduler 
+-add trigger for on system start
+-select run with highest privileges
+-add run a progamm in actions with this: 
+  -script: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+  -argument: -windowstyle hidden .\Setaudio.ps1
+  -start in: ***YOUR SCRIPT PATH***
