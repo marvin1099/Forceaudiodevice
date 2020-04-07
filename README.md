@@ -3,7 +3,7 @@ This powershell script will change your default playback and recording audio dev
 
 # IMPORTANT
 When it ask you for a ***ID*** for the playback or recording default device,  
-just copy the id field from the the waned audio device
+just copy the id field from the the wanted audio device
 
 When it ask you for a ***NAME*** for the playback or recording communication device,  
 only copy the name ***BEFORE*** the brackets
