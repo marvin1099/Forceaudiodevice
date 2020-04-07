@@ -16,10 +16,10 @@ The main version of this script requires nircmd ***IN THE SAME FOLDER AS THE SCR
 https://www.nirsoft.net/utils/nircmd-x64.zip
 
 # Working
-Still working an auto installer you wat to run it ad this to the Task Scheduler 
+Still working an auto installer you wat to run it ad this to the Task Scheduler   
 -add trigger for on system start  
--select run with highest privileges 
+-select run with highest privileges   
 -add run a progamm in actions with this:  
   -script: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe  
-  -argument: -windowstyle hidden .\Setaudio.ps1 
-  -start in: ***YOUR SCRIPT PATH*** 
+  -argument: -windowstyle hidden .\Setaudio.ps1   
+  -start in: ***YOUR SCRIPT PATH***   
