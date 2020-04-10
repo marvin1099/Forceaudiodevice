@@ -2,6 +2,9 @@
 This AutoHotkey script will write a custom powershell script, 
 which will change your default playback or/and recording audio device to the one you want
 
+The autohotkey script is unsing   
+https://autohotkey.com/board/topic/60706-native-zip-and-unzip-xpvista7-ahk-l/   
+for unziping. 
 # IMPORTANT
 When it ask you for a ***ID*** for the playback or recording default device,  
 just copy the id field from the the wanted audio device out of the powershell window that opens
