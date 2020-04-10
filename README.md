@@ -33,5 +33,5 @@ you can choose if you want
 After those options its going to ask you for a ***ID***,  
 for the playback or/and recording default device more on this under IMPORTANT  
 After those options its will or will not depending on earlier selection ask you for a ***NAME***,   
-for the playback or/and recording communication device more on this under IMPORTANT 
+for the playback or/and recording communication device more on this under IMPORTANT   
 Now you are finished if you want to you can delete the Setup-Force-Audiodevice.exe
