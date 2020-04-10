@@ -245,7 +245,7 @@ FileAppend,
 if(Speaker1 = 1)
 FileAppend,
 (
-		Start-Process "nircmd.exe" "setdefaultsounddevice `"$AudioDevice_CP`" 2"
+		Start-Process "nircmd.exe" "setdefaultsounddevice ``"$AudioDevice_CP``" 2"
 		
 ), Setaudio.ps1
 if(Speaker = 1)
@@ -267,7 +267,7 @@ FileAppend,
 if(Microfon1 = 1)
 FileAppend,
 (
-        Start-Process "nircmd.exe" "setdefaultsounddevice `"$AudioDevice_CR`" 2"
+        Start-Process "nircmd.exe" "setdefaultsounddevice ``"$AudioDevice_CR``" 2"
 		
 ), Setaudio.ps1
 if(Microfon = 1)
