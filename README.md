@@ -31,5 +31,5 @@ you can choose if you want
     the defalt is correct on the 2020.04.10 (jjjj.mm.dd)
 After those options its going to ask you for a ***ID***,  
 for the playback or/and recording default device more on this under IMPORTANT  
-After those options its will or will not depending on earlier selection ask you for a ***NAME***, 
+After those options its will or will not depending on earlier selection ask you for a ***NAME***,   
 for the playback or/and recording communication device more on this under IMPORTANT  
