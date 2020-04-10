@@ -24,8 +24,8 @@ you can choose if you want
 - The Default Audio Microfon to be forced
   - If last opition is yes: The Communication Audio Microfon to be forced
 - To install nircmd
-  - If last opition is yes: Type the ulr to nircmd-x64.zip
+  - If last opition is yes: Type the ulr to nircmd-x64.zip  
     the defalt is correct on the 2020.04.10 (jjjj.mm.dd) 
 - To install AudioDeviceCmdlets
-  - If last opition is yes: Type the ulr to AudioDeviceCmdlets.dll
+  - If last opition is yes: Type the ulr to AudioDeviceCmdlets.dll  
     the defalt is correct on the 2020.04.10 (jjjj.mm.dd)
