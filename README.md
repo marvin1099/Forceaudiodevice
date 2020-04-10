@@ -4,7 +4,7 @@ which will change your default playback or/and recording audio device to the one
 
 The autohotkey script is unsing   
 https://autohotkey.com/board/topic/60706-native-zip-and-unzip-xpvista7-ahk-l/   
-for unziping. 
+for unziping the nircmd-x64.zip if you want to autodownload it.   
 # IMPORTANT
 When it ask you for a ***ID*** for the playback or recording default device,  
 just copy the id field from the the wanted audio device out of the powershell window that opens
