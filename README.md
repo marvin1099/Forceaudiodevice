@@ -29,3 +29,7 @@ you can choose if you want
 - To install AudioDeviceCmdlets
   - If last opition is yes: Type the ulr to AudioDeviceCmdlets.dll  
     the defalt is correct on the 2020.04.10 (jjjj.mm.dd)
+After those options its going to ask you for a ***ID***,  
+for the playback or/and recording default device more on this under IMPORTANT  
+After those options its will or will not depending on earlier selection ask you for a ***NAME***, 
+for the playback or/and recording communication device more on this under IMPORTANT  
