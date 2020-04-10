@@ -11,7 +11,7 @@ only copy the name ***BEFORE*** the brackets out of the powershell window that o
 
 After you dont need The powershell Audiolist anymore just close it off
 
-You want a to see the Audiolist again run AudioList.bat 
+You want a to see the Audiolist again run AudioList.bat   
 you can also change the audio devices name/id by opening Setaudio.ini and editting line 2-5
 # Installation
 Download the newest zip here:   
