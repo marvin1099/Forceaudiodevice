@@ -226,11 +226,11 @@ Add-Content -Path $INIPath $3
 Add-Content -Path $INIPath $4
 }
 elseif(Test-Path $RUNINIPath){
-Remove-Item –Path $RUNINIPath
 $Trigger= New-ScheduledTaskTrigger -AtLogon # Specify the trigger settings
 $Action= New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-executionpolicy remotesigned -windowstyle hidden -File ""$Script""" # Specify what program to run and with its parameters
 Register-ScheduledTask -TaskName "ForceDefaultAudio" -Trigger $Trigger -Action $Action -RunLevel Highest –Force # Specify the name of the task
 }
+Remove-Item –Path $RUNINIPath
 
 if(Test-Path $INIPath){
 $AudioDevice_DP = (Get-Content -Path $INIPath -TotalCount 2)[-1]
