@@ -154,6 +154,7 @@ return $x
 
 $Script = $PSScriptRoot+"\"+(Get-Item $PSCommandPath ).Name
 $INIPath = $PSScriptRoot+"\"+(Get-Item $PSCommandPath ).BaseName+".ini"
+$RUNINIPath = $PSScriptRoot+"\"+(Get-Item $PSCommandPath ).BaseName+".run.ini"
 
 
 if(!(Test-Path $INIPath)){
@@ -216,13 +217,19 @@ $4 = "null"
 FileAppend,
 (
 $Trigger= New-ScheduledTaskTrigger -AtLogon # Specify the trigger settings
-$Action= New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-windowstyle hidden '$Script'" # Specify what program to run and with its parameters
+$Action= New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-executionpolicy remotesigned -windowstyle hidden -File ""$Script""" # Specify what program to run and with its parameters
 Register-ScheduledTask -TaskName "ForceDefaultAudio" -Trigger $Trigger -Action $Action -RunLevel Highest –Force # Specify the name of the task
 Add-Content -Path $INIPath "Line 2 Playback Default Audio Device ID, Line 3 Playback Communications Audio Device Name, Line 4 Recording Default Audio Device ID, Line 5 Recording Communications Audio Device Name"
 Add-Content -Path $INIPath $1
 Add-Content -Path $INIPath $2
 Add-Content -Path $INIPath $3
 Add-Content -Path $INIPath $4
+}
+elseif(Test-Path $RUNINIPath){
+Remove-Item –Path $RUNINIPath
+$Trigger= New-ScheduledTaskTrigger -AtLogon # Specify the trigger settings
+$Action= New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-executionpolicy remotesigned -windowstyle hidden -File ""$Script""" # Specify what program to run and with its parameters
+Register-ScheduledTask -TaskName "ForceDefaultAudio" -Trigger $Trigger -Action $Action -RunLevel Highest –Force # Specify the name of the task
 }
 
 if(Test-Path $INIPath){
@@ -245,7 +252,7 @@ FileAppend,
 if(Speaker1 = 1)
 FileAppend,
 (
-		Start-Process "nircmd.exe" "setdefaultsounddevice ``"$AudioDevice_CP``" 2"
+		Start-Process "$PSScriptRoot/nircmd.exe" "setdefaultsounddevice ``"$AudioDevice_CP``" 2"
 		
 ), Setaudio.ps1
 if(Speaker = 1)
@@ -267,7 +274,7 @@ FileAppend,
 if(Microfon1 = 1)
 FileAppend,
 (
-        Start-Process "nircmd.exe" "setdefaultsounddevice ``"$AudioDevice_CR``" 2"
+        Start-Process "$PSScriptRoot/nircmd.exe" "setdefaultsounddevice ``"$AudioDevice_CR``" 2"
 		
 ), Setaudio.ps1
 if(Microfon = 1)
@@ -291,4 +298,6 @@ FileAppend,
 (
 start PowerShell.exe -noexit -command "Get-AudioDevice -List"
 ), AudioList.bat
-Run, Powershell -windowstyle hidden -Command .\Setaudio.ps1, %A_ScriptDir%
+
+FileAppend,, Setaudio.run.ini
+Run, Powershell -executionpolicy remotesigned -windowstyle hidden -File .\Setaudio.ps1, %A_ScriptDir%
