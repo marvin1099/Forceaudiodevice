@@ -28,6 +28,7 @@ if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)"))
 }
 Stop := 0
 Nircmd := 0
+IsInNir := 0
 While(Stop = 0)
 {
 MsgBox, 4, Audio Select, Use As Default Speaker Changer
@@ -60,7 +61,14 @@ MsgBox, 0, Audio Select, Please select something, 4
 if(Nircmd = 1)
 {
 MsgBox, 4, Install, Install Nircmd?
-IfMsgBox, Yes
+IfMsgBox, No
+{
+if(FileExist(nircmd.exe))
+IsInNir := 1
+}
+else
+{
+While(!(FileExist(nircmd.exe)))
 {
 http := ""
 While(http = ""){
@@ -75,6 +83,10 @@ Unz(sZip,sUnz)
 FileMove, %sUnz%\*.*, %A_ScriptDir% , 1
 FileRemoveDir, %sUnz%
 FileDelete, %sUnz%.zip
+if(!(FileExist(nircmd.exe)))
+	MsgBox, 0, URL Downloader, The download link did not download the nircmd.exe file. Try it again with another, 4
+}
+IsInNir := 1
 }
 }
 MsgBox, 4, Install, Install AudioDeviceCmdlets?
@@ -249,10 +261,16 @@ FileAppend,
 		Set-AudioDevice -ID $AudioDevice_DP
 		
 ), Setaudio.ps1
-if(Speaker1 = 1)
+if((Speaker1 = 1)and(IsInNir=1))
 FileAppend,
 (
 		Start-Process "$PSScriptRoot/nircmd.exe" "setdefaultsounddevice ``"$AudioDevice_CP``" 2"
+		
+), Setaudio.ps1
+if((Speaker1 = 1)and(IsInNir=0))
+FileAppend,
+(
+		Start-Process "nircmd" "setdefaultsounddevice ``"$AudioDevice_CP``" 2"
 		
 ), Setaudio.ps1
 if(Speaker = 1)
@@ -271,10 +289,16 @@ FileAppend,
         Set-AudioDevice -ID $AudioDevice_DR
 		
 ), Setaudio.ps1
-if(Microfon1 = 1)
+if((Microfon1 = 1)and(IsInNir=1))
 FileAppend,
 (
         Start-Process "$PSScriptRoot/nircmd.exe" "setdefaultsounddevice ``"$AudioDevice_CR``" 2"
+		
+), Setaudio.ps1
+if((Microfon1 = 1)and(IsInNir=0))
+FileAppend,
+(
+        Start-Process "nircmd" "setdefaultsounddevice ``"$AudioDevice_CR``" 2"
 		
 ), Setaudio.ps1
 if(Microfon = 1)
