@@ -68,7 +68,7 @@ IsInNir := 1
 }
 else
 {
-While(!(FileExist(nircmd.exe)))
+While(!(FileExist("nircmd.exe")))
 {
 http := ""
 While(http = ""){
@@ -83,7 +83,7 @@ Unz(sZip,sUnz)
 FileMove, %sUnz%\*.*, %A_ScriptDir% , 1
 FileRemoveDir, %sUnz%
 FileDelete, %sUnz%.zip
-if(!(FileExist(nircmd.exe)))
+if(!(FileExist("nircmd.exe")))
 	MsgBox, 0, URL Downloader, The download link did not download the nircmd.exe file. Try it again with another, 4
 }
 IsInNir := 1
