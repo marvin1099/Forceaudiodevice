@@ -1,43 +1,41 @@
 # Python Update Readme Outdatet (Readme Update Soon)
 # Force Default Audiodevice
-This AutoHotkey script will write a custom powershell script, 
-which will change your default playback or/and recording audio device to the one you want
+This Python script will use the nirsoft.net tool SoundVolumeView to check:
+- default comunication playback audio device
+- default playback audio device
+- default comunication recording audio device
+- default recording audio device
+And change it to what you set it to if it is nessesery
 
-The autohotkey script is unsing   
-https://autohotkey.com/board/topic/60706-native-zip-and-unzip-xpvista7-ahk-l/   
-for unziping the nircmd-x64.zip if you want to autodownload it.   
+The Python script is unsing the librarys (only needed for the .py not the .exe):
+urllib.request, threading, zipfile, msvcrt, json, time, sys, os
+It also only uses the command line as input if it needs to be deploied on a windows server 
+
 # IMPORTANT
-When it ask you for a ***ID*** for the playback or recording default device,  
-just copy the id field from the the wanted audio device out of the powershell window that opens
+Allways enter the ***number*** in ***front*** of the audio device you want to use.
+The ***name*** or the ***id*** of the devices will spitt out an error
+To change the default audiodevices after setup delete 
+"***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json" (the default name is "Forceaudiodevice-AudioDevices.json")
+You can also rename it or move it to use it later (for that to work just rename it back or move it back)
 
-When it ask you for a ***NAME*** for the playback or recording communication device,  
-only copy the name ***BEFORE*** the brackets out of the powershell window that opens
-
-After you dont need The powershell Audiolist anymore just close it off
-
-You want a to see the Audiolist again run AudioList.bat   
-you can also change the audio devices name/id by opening Setaudio.ini and editting line 2-5
 # Installation
-Download the newest zip here:   
-https://github.com/marvin1099/Force_Audiodevice/releases  
-Unzib it somewhere it can stay.   
-Wen you run it in the next step,  
-run it inside a folder so it doesn't create a mess.   
-Run the Setup-Force-Audiodevice.exe file it will setup everything   
-you can choose if you want  
-- The Default Audio Speaker to be forced
-  - If last opition is yes: The Communication Audio Speaker to be forced
-- The Default Audio Microfon to be forced
-  - If last opition is yes: The Communication Audio Microfon to be forced
-- To install nircmd
-  - If last opition is yes: Type the ulr to nircmd-x64.zip  
-    the defalt is correct on the 2020.04.10 (jjjj.mm.dd) 
-- To install AudioDeviceCmdlets
-  - If last opition is yes: Type the ulr to AudioDeviceCmdlets.dll  
-    the defalt is correct on the 2020.04.10 (jjjj.mm.dd)
+Download the newest:
+- .zip (full project, Unzib somewhere it can stay),
+- .exe and .vbs (esay script and script to start it hidden, move somewhere it can stay), 
+- .py and .vbs (sorce coce script and script to start it hidden, move somewhere it can stay), 
 
-After those options its going to ask you for a ***ID***,  
-for the playback or/and recording default device more on this under IMPORTANT  
-After those options its will or will not depending on earlier selection ask you for a ***NAME***,   
-for the playback or/and recording communication device more on this under IMPORTANT   
-Now you are finished if you want to you can delete the Setup-Force-Audiodevice.exe
+by opening the releases section or open this link:
+https://github.com/marvin1099/Force_Audiodevice/releases  
+When you run it in the next step,  
+run it inside a folder so it doesn't create a mess.   
+Run the ***INPUT_SCRIPT_NAME_HERE***.exe or ***INPUT_SCRIPT_NAME_HERE***.py it will ask you for:
+- default playback and recording audio device (Here enter the numbers of what you want)
+- - This can be left emty to skip or given only a speaker / microfon or given both
+- default comunication playback and comunication recording audio device
+- - This can be left emty to skip or given only a speaker / microfon or given both
+
+This will save the ***IDs*** of the speakers and / or microfons in to "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json",
+this can be canged while it is running by editing the path inside the "***INPUT_SCRIPT_NAME_HERE***-AudioDDesination.txt"
+both files can be switched while the script runns but if the:
+- "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json" is missing it will exit the script after 60 seconds if not replaced in that time
+- "***INPUT_SCRIPT_NAME_HERE***-AudioDDesination.txt" is missing it will exit the script after 20 seconds if not replaced in that time
