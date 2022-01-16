@@ -4,12 +4,13 @@ This Python script will use the nirsoft.net tool SoundVolumeView to check:
 - default playback audio device
 - default comunication recording audio device
 - default recording audio device       
-And change it to what you set it to if it is nessesery
+
+And change it to what you set it to if it is nessesery.
 
 The Python script is unsing the librarys (only needed for the .py not the .exe):  
 urllib.request, threading, zipfile, msvcrt, json, time, sys, os 
 
-It also only uses the command line as input if it needs to be deploied on a windows server.  
+It also only uses the command line as input for if it needs to be deploied on a windows server.  
 
 # IMPORTANT
 Allways enter the ***number*** in ***front*** of the audio device you want to use.	    
