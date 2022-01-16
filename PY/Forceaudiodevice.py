@@ -347,7 +347,11 @@ def main():
         f = open(AudioDeviceFilePa, 'w')
         json.dump(Save, f, sort_keys=False, indent=4, separators=(',', ': '))
         f.close()
-        time.sleep(10)
+        Argsstr = ""
+        for i in Args:
+            Argsstr = Argsstr + " " + i
+        Start(Connectlisttostr(Script),Argsstr[1:],True)
+        exit()
     if os.path.exists(SoundVolumeViewPa):
         UseSVPA = True
     else:
