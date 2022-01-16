@@ -1,4 +1,4 @@
-# Python Update (Readme Update Soon)
+# Python Update Readme Outdatet (Readme Update Soon)
 # Force Default Audiodevice
 This AutoHotkey script will write a custom powershell script, 
 which will change your default playback or/and recording audio device to the one you want
