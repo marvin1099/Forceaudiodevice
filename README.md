@@ -15,8 +15,8 @@ It also only uses the command line as input for if it needs to be deploied on a 
 # IMPORTANT
 The new python script is ***NOT COMPATIBLE*** with the old autohotkey / powershell config files from versions before 1.0.      
 Allways enter the ***number*** in ***front*** of the audio device you want to use.	    
-The ***name*** or the ***id*** of the devices will spitt out an error       
-and allways run it inside a folder so it doesn't create a mess.  
+The ***name*** or the ***id*** of the devices will spitt out an error.       
+Allways run it inside a folder so it doesn't create a mess.  
 
 To change the default audiodevices after setup delete,	     
 "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json" (the default name is "Forceaudiodevice-AudioDevices.json").	          
