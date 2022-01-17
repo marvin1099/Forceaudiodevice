@@ -2,7 +2,7 @@
 - Script Info | L8 | Some info of the Script
 - IMPORTANT | L22 | Important things to know when using thsi script
 - Installation | L33 | The instalation of the script
-- PARRAMETERS | L57 | Parrameters / Arguments to run with the script
+- ARGUMENTS | L57 | Parrameters / Arguments to run with the script
 - OPERATING SYSTEM | L68 | Info about Windows only support (no Mac and Linux support)
 
 # Script Info | L8 
@@ -54,8 +54,8 @@ both files can be switched while the script runs but if the:
 - "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json" is missing it will exit the script after 60 seconds if not replaced in that time
 - "***INPUT_SCRIPT_NAME_HERE***-AudioDDesination.txt" is missing it will exit the script after 20 seconds if not replaced in that time
 
-# PARRAMETERS | L57
-Availible arguments are       
+# ARGUMENTS | L57
+Availible arguments / parrameters are       
 - 'help' to dsplay this in the commandline       
 - 'exit' to only run the configuration and exit       
 - Any argument that includes Soundvolumeview will be used as the Soundvolumeview file       
