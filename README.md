@@ -33,9 +33,9 @@ When you run it in the next step,
 keep in mind to allways run it inside a folder so it doesn't create a mess.   
 Run the ***INPUT_SCRIPT_NAME_HERE***.exe or ***INPUT_SCRIPT_NAME_HERE***.py it will ask you for:
 - default playback and recording audio device (Here enter the numbers of what you want)
-- - This can be left emty to skip or given only a speaker / microfon or given both
+- - This can be left emty to skip, given only a speaker / microfon or given both
 - default comunication playback and comunication recording audio device
-- - This can be left emty to skip or given only a speaker / microfon or given both
+- - This can be left emty to skip, given only a speaker / microfon or given both
 
 After this change a audio device to something wrong and see if it changes to waht you set it to.
 
