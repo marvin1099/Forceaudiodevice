@@ -13,6 +13,7 @@ urllib.request, threading, zipfile, msvcrt, json, time, sys, os
 It also only uses the command line as input for if it needs to be deploied on a windows server.  
 
 # IMPORTANT
+The new python script is ***NOT COMPATIBLE*** with the old config files.      
 Allways enter the ***number*** in ***front*** of the audio device you want to use.	    
 The ***name*** or the ***id*** of the devices will spitt out an error.       
 ***AFTER THE SETUP*** restart the script or change a audio device to something wrong, click on the console and hit enter twice.
