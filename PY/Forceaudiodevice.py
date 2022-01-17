@@ -60,8 +60,14 @@ def Connectlisttostr(CombindeList,PartsToCombinde = []):
                 EndStr = EndStr + a
     return EndStr #Connects a list to a string based on the second list given
 
-def InputTimeout(caption = "\\/\\/\\/ ",timeout = 5, default = ""):
-    class KeyboardThread(threading.Thread):
+def InputTimeout(caption = ">>> ",timeout = 5, default = ""):
+    print(caption, end = "")
+    inm = input("")
+    if inm == "":
+        return defaut
+    else:
+        return inm
+    '''class KeyboardThread(threading.Thread):
         def run(self):
             self.timedout = False
             self.input = ''
@@ -75,7 +81,6 @@ def InputTimeout(caption = "\\/\\/\\/ ",timeout = 5, default = ""):
                         self.input += str(chr)[2]
                 if len(self.input) == 0 and self.timedout:
                     break
-
     #sys.stdout.write('%s'%(caption));
     result = default
     it = KeyboardThread()
@@ -87,7 +92,7 @@ def InputTimeout(caption = "\\/\\/\\/ ",timeout = 5, default = ""):
         it.join()
         result = it.input
     print("")  # needed to move to next line
-    return result
+    return result'''
 
 def Start(Cmd,Args = "",Wait = False):
     """
@@ -125,7 +130,7 @@ def DownloadFromULR(url,itime = 5,TargetFileList = Pathsplit("DownFile"),Downloa
                 nurl = InputTimeout(DownloadError,DownloadTime)
                 if nurl == "":
                     print("No Url Given Exiting")
-                    ExitWait(60)
+                    ExitWait(20)
                 else:
                     itime = 5
                     url = nurl
@@ -143,21 +148,22 @@ def Unzip(zip,dir):
             z.extractall(dir)
     except:
         print("Invalid File To Extract Exiting")
-        ExitWait(60)
+        ExitWait(20)
     return #Unzips a zip file to taget directory
 
-def ExitWait(Time = 120,ExitCode = ""):
+def ExitWait(Time = 60,ExitCode = ""):
     if ExitCode == "":
         ExitCode = None
     else:
         try:
+            Time = int(Time)
             ExitCode = int(ExitCode)
         except:
-            print("The Exit Code Can Only Be An Intenger Or An Empty String")
+            print("The Exit Code And The Wait Time Can Only Be An Intenger Or An Empty String")
             ExitCode = None
     print("")
     try:
-        InputTimeout("Push Enter To Exit ", Time)
+        time.sleep(Time)
     except:
         pass
     exit(ExitCode)
@@ -166,6 +172,32 @@ def main():
     Args = sys.argv
     Script = Pathsplit(Args[0])
     Args.pop(0)
+    if not os.path.exists(Script[0] + Script[1] + Script[2] + ".vbs"):
+        f = open(Script[0] + Script[1] + Script[2] + ".vbs", "w")
+        s = '''\
+Function FileExists(FilePath)
+  Set fso = CreateObject("Scripting.FileSystemObject")
+  If fso.FileExists(FilePath) Then
+    FileExists=CBool(1)
+  Else
+    FileExists=CBool(0)
+  End If
+End Function
+
+Dim WShell
+Set WShell = CreateObject("WScript.Shell")
+File = CreateObject("Scripting.FileSystemObject").GetBaseName(WScript.ScriptName)
+If FileExists(File & ".exe") Then
+	WShell.Run File & ".exe", 0
+ElseIf FileExists(File & ".py") Then
+	WShell.Run File & ".py", 0
+Else
+	WScript.Echo "Error File '" & File & ".exe' Or '" & File & ".py' Does No Exist Exiting"
+End If
+Set WShell = Nothing\
+        '''
+        f.write(s)
+        f.close()
     Vexit = 0
     SoundVolumeViewSp = Pathsplit("SoundVolumeView")
     AudioDeviceFileSp = Pathsplit(Script[2] + "-AudioDevices.json")
@@ -192,7 +224,7 @@ def main():
                 print("  Any Argument That Includes '" + SoundVolumeViewSp[2] + "' Will Be Used As The '" + SoundVolumeViewSp[2] + "' File")
                 print("  Any Argument That Ends With 'json' or 'ini' Will Be Used As The Save Location For The Device Config File")
                 print("  Any Argument That Ends With 'txt' Will Be Used To Create A File,\n   Inside Of It You Can Change The Device Config File Location\n    It Will Aply While The Programm Runs")
-                ExitWait()
+                ExitWait(40)
     print("Add 'help' As Argument To Show A List Of Availible Arguments")
     AudioDDFilePa = Connectlisttostr(AudioDDFileSp)
     SoundVolumeViewPa = Connectlisttostr(SoundVolumeViewSp)
@@ -212,7 +244,7 @@ def main():
         Start(SoundVolumeViewSp[2],"/sjson " + VVJsonPa,True)
     if not os.path.exists(VVJsonPa):
         print("Error SoundVolumeView Missing")
-        ExitWait(60)
+        ExitWait(20)
     f = open(VVJsonPa, encoding='UTF-16')
     try:
         ConfigJson = json.load(f)
@@ -220,12 +252,13 @@ def main():
         f.close()
         os.remove(VVJsonPa)
         print("Error SoundVolumeView Json Missing")
-        ExitWait(60)
+        ExitWait(20)
     else:
         f.close()
         os.remove(VVJsonPa)
     print("Checking For Config File")
     if not os.path.exists(AudioDeviceFilePa):
+        print("The User Input Timeout Is Broken So When You Are Asked For Something It Will Only Continue After Pushing Enter\n")
         AudioDevicesS = []
         AudioDevicesR = []
         AudioDNRS = 0
@@ -252,8 +285,8 @@ def main():
         while Unvalid[0] > 0:
             DefD = ["",""]
             DefC = ["",""]
-            DefD = InputTimeout("Input The Device Nummbers That Shold Be Used As Default (Separated By Kommas E.G. 1,4) \\/\\/\\/ ",DefNumTimeout).split(",") + [""]
-            DefC = InputTimeout("Input The Device Nummbers That Shold Be Used As Default Communications (Separated By Kommas E.G. 3,10) \\/\\/\\/ ",DefNumTimeout).split(",") + [""]
+            DefD = InputTimeout("Input The Device Nummbers That Shold Be Used As Default (Separated By Kommas E.G. 1,4)\n>>> ",DefNumTimeout).split(",") + [""]
+            DefC = InputTimeout("Input The Device Nummbers That Shold Be Used As Default Communications (Separated By Kommas E.G. 3,10)\n>>> ",DefNumTimeout).split(",") + [""]
             Unvalid[1] = 0
             try:
                 if DefD[0] != "":
@@ -272,7 +305,7 @@ def main():
                 Unvalid[0] -= 1
                 if Unvalid[0] == 1:
                     print("Error User Could Not Input Valid Nummbers")
-                    ExitWait(60)
+                    ExitWait(20)
             else:
                 if DefD[0] != "":
                     if DefD[0] < int(AudioDNRS+AudioDNRR) and DefD[0] > -1:
@@ -305,7 +338,7 @@ def main():
                     Unvalid[0] -= 1
                     if Unvalid[0] == 1:
                         print("Error User Could Not Input Valid Nummbers")
-                        ExitWait(60)
+                        ExitWait(20)
                 else:
                     Unvalid[0] = 0
                     DefaultList = [DefD[0],DefD[1],DefC[0],DefC[1],""]
@@ -347,21 +380,16 @@ def main():
         f = open(AudioDeviceFilePa, 'w')
         json.dump(Save, f, sort_keys=False, indent=4, separators=(',', ': '))
         f.close()
-        Argsstr = ""
-        for i in Args:
-            Argsstr = Argsstr + " " + i
-        Start(Connectlisttostr(Script),Argsstr[1:],True)
-        exit()
     if os.path.exists(SoundVolumeViewPa):
         UseSVPA = True
     else:
         UseSVPA = False
     if Vexit == 1:
-        ExitWait(60)
+        ExitWait(20)
     f = open(AudioDDFilePa,"w")
     f.write(AudioDeviceFilePa)
     f.close()
-    print("Done Prossesing\nStarting Audio Device Loop\n")
+    print("All Checks Successful Continuing\nStarting Audio Device Loop\n")
     while True:
         if os.path.exists(AudioDDFilePa):
             f = open(AudioDDFilePa,"r")
@@ -408,7 +436,7 @@ def main():
             Start(SoundVolumeViewSp[2],'/sjson "' + VVJsonPa + '"',True)
         if not os.path.exists(VVJsonPa):
             print("Error SoundVolumeView Missing")
-            ExitWait(60)
+            ExitWait(20)
         f = open(VVJsonPa, encoding='UTF-16')
         try:
             ConfigJson = json.load(f)
@@ -416,7 +444,7 @@ def main():
             f.close()
             os.remove(VVJsonPa)
             print("Error SoundVolumeView Json Missing")
-            ExitWait(60)
+            ExitWait(20)
         else:
             f.close()
             os.remove(VVJsonPa)
