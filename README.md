@@ -1,4 +1,4 @@
-# Force Default Audiodevice (Python Update)
+# Force Default Audiodevice (Python Update) - Content Tabe
 - Script Info | L8 | Some info of the Script
 - IMPORTANT | L22 | Important things to know when using thsi script
 - Installation | L33 | The instalation of the script
