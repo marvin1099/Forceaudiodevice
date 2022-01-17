@@ -47,13 +47,13 @@ both files can be switched while the script runs but if the:
 
 # PARRAMETERS
 Availible arguments are       
-'help' to dsplay this in the commandline       
-'exit' to only run the configuration and exit       
-Any argument that includes Soundvolumeview will be used as the Soundvolumeview file       
-Any argument that ends with 'json' or 'ini' will be used as the save location for the device config file")       
-Any argument that ends with 'txt' will be used to create a file.       
-- Inside of it you can change the device config file location.       
-- - It will aply while the programm runs.
+- 'help' to dsplay this in the commandline       
+- 'exit' to only run the configuration and exit       
+- Any argument that includes Soundvolumeview will be used as the Soundvolumeview file       
+- Any argument that ends with 'json' or 'ini' will be used as the save location for the device config file")       
+- Any argument that ends with 'txt' will be used to create a file.       
+- - Inside of it you can change the device config file location.       
+- - - It will aply while the programm runs.
                 
 
 # OPERATING SYSTEM
