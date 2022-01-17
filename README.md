@@ -37,7 +37,7 @@ Run the ***INPUT_SCRIPT_NAME_HERE***.exe or ***INPUT_SCRIPT_NAME_HERE***.py it w
 - default comunication playback and comunication recording audio device
 - - This can be left emty to skip, given only a speaker / microfon or given both
 
-After this change a audio device to something wrong and see if it changes to waht you set it to.
+After this change a audio device to something wrong and see if it changes to what you set it up for.
 
 This will save the ***IDs*** of the speakers and / or microfons in to "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json",           
 this can be canged while it is running by editing the path inside the "***INPUT_SCRIPT_NAME_HERE***-AudioDDesination.txt".         
