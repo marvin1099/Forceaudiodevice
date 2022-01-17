@@ -3,7 +3,7 @@
 - IMPORTANT | L22 | Important things to know when using thsi script
 - Installation | L33 | The instalation of the script
 - PARRAMETERS | L57 | Parrameters / Arguments to run with the script
-- OPERATING SYSTEM | L68 | Info about Windows only suport (no Mac and Linux)
+- OPERATING SYSTEM | L68 | Info about Windows only support (no Mac and Linux support)
 
 # Script Info | L8 
 This Python script will use the nirsoft.net tool SoundVolumeView that ***ONLY WORKS ON WINDOWS*** to check and change the:
