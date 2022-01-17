@@ -14,7 +14,9 @@ It also only uses the command line as input for if it needs to be deploied on a 
 
 # IMPORTANT
 Allways enter the ***number*** in ***front*** of the audio device you want to use.	    
-The ***name*** or the ***id*** of the devices will spitt out an error.	    
+The ***name*** or the ***id*** of the devices will spitt out an error.       
+***AFTER THE SETUP*** restart the script or change a audio device to something wrong, click on the console and hit enter twice.
+
 To change the default audiodevices after setup delete,	     
 "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json" (the default name is "Forceaudiodevice-AudioDevices.json").	          
 You can also rename it or move it to use it later (for that to work just rename it back or move it back).	        
@@ -34,6 +36,8 @@ Run the ***INPUT_SCRIPT_NAME_HERE***.exe or ***INPUT_SCRIPT_NAME_HERE***.py it w
 - - This can be left emty to skip or given only a speaker / microfon or given both
 - default comunication playback and comunication recording audio device
 - - This can be left emty to skip or given only a speaker / microfon or given both
+
+After this restart the script or change a audio device to something wrong, click on the console and hit enter twice to make the script become active.
 
 This will save the ***IDs*** of the speakers and / or microfons in to "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json",           
 this can be canged while it is running by editing the path inside the "***INPUT_SCRIPT_NAME_HERE***-AudioDDesination.txt".         
