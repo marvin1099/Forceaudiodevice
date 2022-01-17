@@ -1,11 +1,12 @@
-# Force Default Audiodevice (Python Update) - Content Tabe
-- Script Info | L8 | Some info of the Script
-- IMPORTANT | L22 | Important things to know when using thsi script
-- Installation | L33 | The instalation of the script
-- ARGUMENTS | L57 | Parrameters / Arguments to run with the script
-- OPERATING SYSTEM | L68 | Info about Windows only support (no Mac and Linux support)
+# Force Default Audiodevice (Python Update) 
+    Table of Contents
+- Script Info | L9 | Some info of the Script
+- IMPORTANT | L23 | Important things to know when using thsi script
+- Installation | L34 | The instalation of the script
+- ARGUMENTS | L58 | Parrameters / Arguments to run with the script
+- OPERATING SYSTEM | L69 | Info about Windows only support (no Mac and Linux support)
 
-# Script Info | L8 
+# Script Info | L9 
 This Python script will use the nirsoft.net tool SoundVolumeView that ***ONLY WORKS ON WINDOWS*** to check and change the:
 - default comunication playback audio device
 - default playback audio device
@@ -19,7 +20,7 @@ urllib.request, threading, zipfile, msvcrt, json, time, sys, os
 
 It also only uses the command line as input for if it needs to be deploied on a windows server.  
 
-# IMPORTANT | L22
+# IMPORTANT | L23
 The new python script is ***NOT COMPATIBLE*** with the old autohotkey / powershell config files from versions before 1.0.   
 Because of the dependency of the nirsoft.net tool SoundVolumeView it still ***ONLY WORKS ON WINDOWS***.     
 Allways enter the ***number*** in ***front*** of the audio device you want to use.	    
@@ -30,7 +31,7 @@ To change the default audiodevices after setup delete,
 "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json" (the default name is "Forceaudiodevice-AudioDevices.json").	          
 You can also rename it or move it to use it later (for that to work just rename it back or move it back).	        
 
-# Installation | L33
+# Installation | L34
 Download the newest:
 - .zip (full project, unzib somewhere it can stay),
 - .exe (easy script, place it somewhere it can stay), 
@@ -54,7 +55,7 @@ both files can be switched while the script runs but if the:
 - "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json" is missing it will exit the script after 60 seconds if not replaced in that time
 - "***INPUT_SCRIPT_NAME_HERE***-AudioDDesination.txt" is missing it will exit the script after 20 seconds if not replaced in that time
 
-# ARGUMENTS | L57
+# ARGUMENTS | L58
 Availible arguments / parrameters are       
 - 'help' to dsplay this in the commandline       
 - 'exit' to only run the configuration and exit       
@@ -65,6 +66,6 @@ Availible arguments / parrameters are
 - - - It will aply while the programm runs.
                 
 
-# OPERATING SYSTEM | L68
+# OPERATING SYSTEM | L69
 This script could technically run on mac or linux but SoundVolumeView is windows only.       
 Other operating systems will probably have a easyer way of doing this (linux will for shure).
