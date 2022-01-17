@@ -46,16 +46,16 @@ both files can be switched while the script runs but if the:
 - "***INPUT_SCRIPT_NAME_HERE***-AudioDDesination.txt" is missing it will exit the script after 20 seconds if not replaced in that time
 
 # PARRAMETERS
-Availible arguments are
-'help' to dsplay this in the commandline
-'exit' to only run the configuration and exit
-Any argument that includes Soundvolumeview will be used as the Soundvolumeview file
-Any argument that ends with 'json' or 'ini' will be used as the save location for the device config file")
-Any argument that ends with 'txt' will be used to create a file.
-    Inside of it you can change the device config file location.
+Availible arguments are       
+'help' to dsplay this in the commandline       
+'exit' to only run the configuration and exit       
+Any argument that includes Soundvolumeview will be used as the Soundvolumeview file       
+Any argument that ends with 'json' or 'ini' will be used as the save location for the device config file")       
+Any argument that ends with 'txt' will be used to create a file.       
+    Inside of it you can change the device config file location.       
         It will aply while the programm runs.
                 
 
 # OPERATING SYSTEM
-This script could technically run on mac or linux but SoundVolumeView is windows only.
+This script could technically run on mac or linux but SoundVolumeView is windows only.       
 Other operating systems will probably have a easyer way of doing this (linux will for shure).
