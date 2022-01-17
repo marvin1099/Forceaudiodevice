@@ -16,7 +16,7 @@ It also only uses the command line as input for if it needs to be deploied on a 
 The new python script is ***NOT COMPATIBLE*** with the old autohotkey / powershell config files from versions before 1.0.      
 Allways enter the ***number*** in ***front*** of the audio device you want to use.	    
 The ***name*** or the ***id*** of the devices will spitt out an error.       
-Allways run it inside a emty folder where it can stay so it doesn't create a mess and is easy to find.  
+First time run it inside a emty folder where it can stay so it doesn't create a mess and is easy to find.  
 
 To change the default audiodevices after setup delete,	     
 "***INPUT_SCRIPT_NAME_HERE***-AudioDevices.json" (the default name is "Forceaudiodevice-AudioDevices.json").	          
@@ -31,7 +31,7 @@ Download the newest:
 by opening the releases section or open this link:     
 https://github.com/marvin1099/Force_Audiodevice/releases  
 When you run it in the next step,  
-keep in mind to allways run it inside a folder so it doesn't create a mess.   
+keep in mind to allways run it inside a the folder so the files wont replace anything as sayed in important.   
 Run the ***INPUT_SCRIPT_NAME_HERE***.exe or ***INPUT_SCRIPT_NAME_HERE***.py it will ask you for:
 - default playback and recording audio device (Here enter the numbers of what you want)
 - - This can be left emty to skip, given only a speaker / microfon or given both
