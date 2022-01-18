@@ -1,5 +1,5 @@
 import urllib.request
-import threading
+import subprocess
 import zipfile
 import msvcrt
 import json
@@ -60,39 +60,25 @@ def Connectlisttostr(CombindeList,PartsToCombinde = []):
                 EndStr = EndStr + a
     return EndStr #Connects a list to a string based on the second list given
 
-def InputTimeout(caption = ">>> ",timeout = 5, default = ""):
-    print(caption, end = "")
-    inm = input("")
-    if inm == "":
-        return defaut
+def InputTimeout(caption = "\\/\\/\\/",Timeout = 5, default = ""):
+    InputFile = "input.bat"
+    if not os.path.exists(InputFile):
+        f = open(InputFile, "w")
+        s = '@echo off\nset /p id=""\necho %id%'
+        f.write(s)
+        f.close()
+    print(caption)
+    try:
+        retu = subprocess.run(InputFile, stdout=subprocess.PIPE, timeout=Timeout)
+        retu = str(retu.stdout)[2:][:-5].replace("ECHO is off.","",1)
+    except:
+        retu = ""
+    if os.path.exists(InputFile):
+        os.remove(InputFile)
+    if retu == "":
+        return default
     else:
-        return inm
-    '''class KeyboardThread(threading.Thread):
-        def run(self):
-            self.timedout = False
-            self.input = ''
-            print(caption)
-            while True:
-                if msvcrt.kbhit():
-                    chr = msvcrt.getche()
-                    if ord(chr) == 13:
-                        break
-                    elif ord(chr) >= 32:
-                        self.input += str(chr)[2]
-                if len(self.input) == 0 and self.timedout:
-                    break
-    #sys.stdout.write('%s'%(caption));
-    result = default
-    it = KeyboardThread()
-    it.start()
-    it.join(timeout)
-    it.timedout = True
-    if len(it.input) > 0:
-        #wait for rest of input
-        it.join()
-        result = it.input
-    print("")  # needed to move to next line
-    return result'''
+        return retu
 
 def Start(Cmd,Args = "",Wait = False):
     """
@@ -105,7 +91,7 @@ def Start(Cmd,Args = "",Wait = False):
     if Wait == True:
         FullCmd = Cmd + " " + Args
         try:
-            os.system(FullCmd)
+            subprocess.run(FullCmd, stdout=subprocess.PIPE)
         except:
             pass
     else:
@@ -117,7 +103,7 @@ def Start(Cmd,Args = "",Wait = False):
             pass
     return #Starts Programms
 
-def DownloadFromULR(url,itime = 5,TargetFileList = Pathsplit("DownFile"),DownloadError = "Error Downloading Type New Url\n>>> ",DownloadTime = 10):
+def DownloadFromULR(url,itime = 5,TargetFileList = Pathsplit("DownFile"),DownloadError = "Error Downloading Type New Url\n\\/\\/\\/ ",DownloadTime = 10,FilesToDelete = []):
     """
     Downloads a file from a url and Unzips it if the Given file ends with zip
     """
@@ -140,6 +126,13 @@ def DownloadFromULR(url,itime = 5,TargetFileList = Pathsplit("DownFile"),Downloa
     if TargetFileList[-1] == "zip":
         Unzip(SoundVVZipPa,TargetFileList[0] + TargetFileList[1])
         os.remove(SoundVVZipPa)
+    if type(FilesToDelete) == type([]):
+        for i in FilesToDelete:
+            e = TargetFileList[0] + Connectlisttostr(Pathsplit(i),[1,2,3,4])
+            if os.path.exists(e):
+                os.remove(e)
+            elif os.path.exists(i):
+                os.remove(i)
     return #Downloads a file from a url and Unzips it if the Given file ends with zip
 
 def Unzip(zip,dir):
@@ -156,24 +149,34 @@ def ExitWait(Time = 60,ExitCode = ""):
         ExitCode = None
     else:
         try:
-            Time = int(Time)
+            if Time == "":
+                Time = 0
+            else:
+                Time = int(Time)
             ExitCode = int(ExitCode)
         except:
             print("The Exit Code And The Wait Time Can Only Be An Intenger Or An Empty String")
             ExitCode = None
-    print("")
+    pausefile = "pause.bat"
+    if not os.path.exists(pausefile):
+        f = open(pausefile, "w")
+        s = '@echo off\npause'
+        f.write(s)
+        f.close()
     try:
-        time.sleep(Time)
+        subprocess.run(pausefile, timeout=Time)
     except:
         pass
-    exit(ExitCode)
+    os.remove(pausefile)
+    sys.exit(ExitCode)
 
 def main():
     Args = sys.argv
     Script = Pathsplit(Args[0])
     Args.pop(0)
-    if not os.path.exists(Script[0] + Script[1] + Script[2] + ".vbs"):
-        f = open(Script[0] + Script[1] + Script[2] + ".vbs", "w")
+    Hiddenvbs = Script[0] + Script[1] + Script[2] + ".vbs"
+    if not os.path.exists(Hiddenvbs):
+        f = open(Hiddenvbs, "w")
         s = '''\
 Function FileExists(FilePath)
   Set fso = CreateObject("Scripting.FileSystemObject")
@@ -233,14 +236,16 @@ Set WShell = Nothing\
     VVJsonSp = Pathsplit("SoundVolumeViewTemp.json")
     VVJsonPa = Connectlisttostr(VVJsonSp)
     print("Starting " + SoundVolumeViewSp[2] + " With The Argument To Create A Json File")
-    Start(SoundVolumeViewSp[2],'/sjson "' + VVJsonPa + '"',True)
-    if not os.path.exists(VVJsonPa):
+    if os.path.exists(SoundVolumeViewPa):
         Start(SoundVolumeViewPa,'/sjson "' + VVJsonPa + '"',True)
-    print("\n\n")
+    else:
+        print("")
+        Start(SoundVolumeViewSp[2],'/sjson "' + VVJsonPa + '"',True)
+        print("")
     if not os.path.exists(VVJsonPa):
         SoundVVZipSp = Pathsplit("SoundVolumeViewTemp.zip")
         Url = "https://www.nirsoft.net/utils/soundvolumeview-x64.zip"
-        DownloadFromULR(Url,5,SoundVVZipSp,"Type The URL For The Nirsoft Soundvolumeview Zib\n\tThe Default Url Didn't Work It Was:\n\t\t" + Url + "\nLeave Empty To Exit\n",20)
+        DownloadFromULR(Url,5,SoundVVZipSp,"Type The URL For The Nirsoft Soundvolumeview Zib\n\tThe Default Url Didn't Work It Was:\n\t\t" + Url + "\nLeave Empty To Exit\n",20,[Connectlisttostr(SoundVVZipSp,[0,1]) + "readme.txt",Connectlisttostr(SoundVVZipSp,[0,1]) + "SoundVolumeView.chm"])
         Start(SoundVolumeViewSp[2],"/sjson " + VVJsonPa,True)
     if not os.path.exists(VVJsonPa):
         print("Error SoundVolumeView Missing")
@@ -258,7 +263,6 @@ Set WShell = Nothing\
         os.remove(VVJsonPa)
     print("Checking For Config File")
     if not os.path.exists(AudioDeviceFilePa):
-        print("The User Input Timeout Is Broken So When You Are Asked For Something It Will Only Continue After Pushing Enter\n")
         AudioDevicesS = []
         AudioDevicesR = []
         AudioDNRS = 0
@@ -274,19 +278,19 @@ Set WShell = Nothing\
         for i in range(0,len(AudioDevicesR)):
             AudioDevicesR[i][0] = AudioDevicesR[i][0] + AudioDNRS
         print("\nNo Config File Found Input The Defaut Devices You Like From The Following List")
-        print("\tSpeakers")
-        for i in AudioDevicesS:
-            print(str(i[0]) + " " + i[3] + " : " + i[1])
-        print("\n\tMicrofons")
-        for i in AudioDevicesR:
-            print(str(i[0]) + " " + i[3] + " : " + i[1])
         Unvalid = [100,0]
-        DefNumTimeout = 20
+        DefNumTimeout = 60
         while Unvalid[0] > 0:
+            print("\tSpeakers")
+            for i in AudioDevicesS:
+                print(str(i[0]) + " " + i[3] + " : " + i[1])
+            print("\n\tMicrofons")
+            for i in AudioDevicesR:
+                print(str(i[0]) + " " + i[3] + " : " + i[1])
             DefD = ["",""]
             DefC = ["",""]
-            DefD = InputTimeout("Input The Device Nummbers That Shold Be Used As Default (Separated By Kommas E.G. 1,4)\n>>> ",DefNumTimeout).split(",") + [""]
-            DefC = InputTimeout("Input The Device Nummbers That Shold Be Used As Default Communications (Separated By Kommas E.G. 3,10)\n>>> ",DefNumTimeout).split(",") + [""]
+            DefD = InputTimeout("Input The Device Nummbers That Shold Be Used As Default (Separated By Kommas E.G. 1,4)\n\\/\\/\\/",DefNumTimeout).split(",") + [""]
+            DefC = InputTimeout("Input The Device Nummbers That Shold Be Used As Default Communications (Separated By Kommas E.G. 3,10)\n\\/\\/\\/",DefNumTimeout).split(",") + [""]
             Unvalid[1] = 0
             try:
                 if DefD[0] != "":
@@ -340,7 +344,6 @@ Set WShell = Nothing\
                         print("Error User Could Not Input Valid Nummbers")
                         ExitWait(20)
                 else:
-                    Unvalid[0] = 0
                     DefaultList = [DefD[0],DefD[1],DefC[0],DefC[1],""]
                     if DefaultList[0] != "" and DefaultList[0] > AudioDNRS-1:
                         DefaultList[4] = DefaultList[0]
@@ -356,21 +359,35 @@ Set WShell = Nothing\
                     if DefaultList[3] != "" and DefaultList[3] < AudioDNRS:
                         DefaultList[2] = DefaultList[3]
                         DefaultList[3] = ""
+                    DefaultList[4] = ""
+                    DefaultList[4] = -3
+                    for i in DefaultList:
+                        if i == "":
+                            DefaultList[4] += 1
+                    if DefaultList[4] < 1:
+                        Unvalid[0] = 0
+                    else:
+                        Unvalid[0] -= 1
+                        if Unvalid[0] == 1:
+                            print("Error User Could Not Input Valid Nummbers")
+                            ExitWait(20)
+                        print("No Audio Devices Where Set Asking Again")
                     DefaultList.pop(4)
-                for i in AudioDevicesS:
-                    if i[0] == DefaultList[0]:
-                        DefaultList[0] = i[2]
-                        print("Using Default Speaker " + str(i[0]) + " : " + i[1] + "\n\tID: " + i[2])
-                    if i[0] == DefaultList[2]:
-                        DefaultList[2] = i[2]
-                        print("Using Default Communication Speaker " + str(i[0]) + " : " + i[1] + "\n\tID: " + i[2])
-                for i in AudioDevicesR:
-                    if i[0] == DefaultList[1]:
-                        DefaultList[1] = i[2]
-                        print("Using Default Microfon " + str(i[0]) + " : " + i[1] + "\n\tID: " + i[2])
-                    if i[0] == DefaultList[3]:
-                        DefaultList[3] = i[2]
-                        print("Using Default Communication Microfon " + str(i[0]) + " : " + i[1] + "\n\tID: " + i[2])
+                if Unvalid[0] == 0:
+                    for i in AudioDevicesS:
+                        if i[0] == DefaultList[0]:
+                            DefaultList[0] = i[2]
+                            print("Using Default Speaker " + str(i[0]) + " : " + i[1] + "\n\tID: " + i[2])
+                        if i[0] == DefaultList[2]:
+                            DefaultList[2] = i[2]
+                            print("Using Default Communication Speaker " + str(i[0]) + " : " + i[1] + "\n\tID: " + i[2])
+                    for i in AudioDevicesR:
+                        if i[0] == DefaultList[1]:
+                            DefaultList[1] = i[2]
+                            print("Using Default Microfon " + str(i[0]) + " : " + i[1] + "\n\tID: " + i[2])
+                        if i[0] == DefaultList[3]:
+                            DefaultList[3] = i[2]
+                            print("Using Default Communication Microfon " + str(i[0]) + " : " + i[1] + "\n\tID: " + i[2])
         Save = {
             DefaultNames[0]:DefaultList[0],
             DefaultNames[1]:DefaultList[1],
@@ -380,6 +397,23 @@ Set WShell = Nothing\
         f = open(AudioDeviceFilePa, 'w')
         json.dump(Save, f, sort_keys=False, indent=4, separators=(',', ': '))
         f.close()
+        Startup = os.path.expanduser('~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup')
+        if os.path.exists(Startup):
+            Shortcut = Script[1] + Script[2]
+            StartupShortcut = Startup + Shortcut + ".lnk"
+            if not os.path.exists(StartupShortcut):
+                Shortnow = str(InputTimeout("You Like To Create Autostart Shortcut In '" + Startup + "'?\nY/N \\/\\/\\/",Timeout = 20, default = " ") + " ")[0]
+                if Shortnow == "Y" or Shortnow == "y":
+                    ShortScript = Script[0] + Script[1] + "CreateShortcut.vbs"
+                    f = open(ShortScript, "w")
+                    s = 'Set objShell = WScript.CreateObject("WScript.Shell")\nSet objShortCut = objShell.CreateShortcut("' + StartupShortcut + '")\nobjShortCut.TargetPath = "' + Hiddenvbs + '"\nobjShortCut.Description = "Run Force Audio Hidden"\nobjShortCut.WorkingDirectory = "' + Script[0] + Script[1] + '"\nobjShortCut.Save'
+                    f.write(s)
+                    f.close()
+                    os.system(ShortScript)
+                    os.remove(ShortScript)
+                    print("Placed Shortcut In Autostart Folder\n")
+                else:
+                    print("")
     if os.path.exists(SoundVolumeViewPa):
         UseSVPA = True
     else:
