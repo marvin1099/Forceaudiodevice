@@ -1,7 +1,7 @@
 # Force Default Audiodevice (Python Update V1.2) 
 # Table of Contents
 - Script Info | L10 | Some info of the Script
-- IMPORTANT | L24 | Important things to know when using thsi script
+- IMPORTANT | L24 | Important things to know when using this script
 - Installation | L39 | The instalation of the script
 - ARGUMENTS | L65 | Parrameters / Arguments to run with the script
 - CREATED FILES | 75 | Files that the script creates
