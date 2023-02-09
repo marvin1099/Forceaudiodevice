@@ -43,7 +43,7 @@ Download the newest:
 - .py (sorce code script, place it somewhere it can stay), 
 
 by opening the releases section or open this link:     
-https://github.com/marvin1099/Forceaudiodevice/releases     
+https://codeberg.org/marvin1099/Forceaudiodevice/releases     
 When you run it in the next step,  
 keep in mind to allways run it inside a the folder so the files won't replace anything as sayed in important.   
 Run the ***INPUT_SCRIPT_NAME_HERE***.exe or ***INPUT_SCRIPT_NAME_HERE***.py it will ask you for:
